@@ -34,5 +34,5 @@ public class Post {
 
     @Column(name = "updated_at", nullable = false)
     @CreationTimestamp
-    private LocalDateTime upodatedAt;
+    private LocalDateTime updatedAt;
 }
