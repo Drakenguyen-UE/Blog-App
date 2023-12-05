@@ -39,4 +39,9 @@ public class PostServiceImpl implements PostService {
         var savedPost = postRepository.save(post);
         return PostMapper.map(savedPost);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        postRepository.deleteById(id);
+    }
 }

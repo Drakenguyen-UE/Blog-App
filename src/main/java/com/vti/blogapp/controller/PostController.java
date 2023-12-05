@@ -21,6 +21,11 @@ public class PostController {
         return postService.findAll(pageable);
     }
 
+    @DeleteMapping("/api/v1/posts/{i}")
+    public void deleteById(@PathVariable("id") Long id) {
+        postService.deleteById(id);
+    }
+
     @PostMapping("/api/v1/posts")
     public PostDto create(@RequestBody PostCreateForm form) {
         return postService.create(form);
