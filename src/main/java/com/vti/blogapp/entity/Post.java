@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -33,6 +34,6 @@ public class Post {
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at", nullable = false)
-    @CreationTimestamp
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }
