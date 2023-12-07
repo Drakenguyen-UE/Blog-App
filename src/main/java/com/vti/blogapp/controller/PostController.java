@@ -1,6 +1,7 @@
 package com.vti.blogapp.controller;
 
 import com.vti.blogapp.dto.PostDto;
+import com.vti.blogapp.entity.Post;
 import com.vti.blogapp.form.PostCreateForm;
 import com.vti.blogapp.form.PostUpdateForm;
 import com.vti.blogapp.service.PostService;
@@ -19,6 +20,11 @@ public class PostController {
     @GetMapping("/api/v1/posts")
     public Page<PostDto> findAll(Pageable pageable) {
         return postService.findAll(pageable);
+    }
+
+    @GetMapping("/api/v1/posts/{id}")
+    public PostDto findById(@PathVariable("id") Long id) { // dùng PathVariable để ko fix cứng giá trị id trên đường dẫn
+        return postService.findById(id);
     }
 
     @DeleteMapping("/api/v1/posts/{i}")

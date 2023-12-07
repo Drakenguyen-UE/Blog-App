@@ -26,6 +26,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public PostDto findById(Long id) {
+        var post = postRepository.findById(id).get();
+        return PostMapper.map(post);
+    }
+
+    @Override
     public PostDto create(PostCreateForm form) {
         var post = PostMapper.map(form);
         var savePost = postRepository.save(post);
