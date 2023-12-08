@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
     private final CommentService commentService;
 
-    @GetMapping("/api/v1/comments")
+    @GetMapping("/api/v1/posts/comments")
     public Page<CommentDto> findAll(Pageable pageable) {
-        return CommentService.findAll(pageable);
+        return commentService.findAll(pageable);
     }
 
     @PostMapping("/api/v1/posts/{postId}/comments")
