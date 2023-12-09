@@ -24,6 +24,11 @@ public class CommentServiceImpl implements CommentService {
     }     // Do khi dùng findAll sẽ trả về 1 page là comment entity, nên phải map để trả về commentDto
 
     @Override
+    public Page<CommentDto> findByPostId(Long postId, Pageable pageable) {
+        return commentRepository.findByPostId(postId, pageable).map(CommentMapper::map);
+    }
+
+    @Override
     public CommentDto create(CommentCreateForm form, Long postId) {
         var comment = CommentMapper.map(form);
         var post = postRepository.findById(postId).get();
