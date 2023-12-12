@@ -1,5 +1,5 @@
 INSERT INTO post (id, title          , description             , content                                  , created_at       , updated_at       )
-VALUES           (1 , "Database"     , "Learn MySQL"           , "Learn MySQL with mentor Khoa"           , CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+VALUES           (1 , "Database"     , "Learn MySQL"           , "Learn MySQL with mentor Khoa"           , "2020-12-09 15:20:40", CURRENT_TIMESTAMP),
                  (2 , "Java Core"    , "Learn Java Core"       , "Learn Java Core with mentor Khoa"       , CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
                  (3 , "Front Basic"  , "Learn HTML, CSS, JS"   , "Learn HTML, CSS, JS with mentor Khoa"   , CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
                  (4 , "Java Advanced", "Learn Spring Framework", "Learn Spring Framework with mentor Khoa", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),

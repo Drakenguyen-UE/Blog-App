@@ -3,6 +3,7 @@ package com.vti.blogapp.controller;
 import com.vti.blogapp.dto.PostDto;
 import com.vti.blogapp.entity.Post;
 import com.vti.blogapp.form.PostCreateForm;
+import com.vti.blogapp.form.PostFilterForm;
 import com.vti.blogapp.form.PostUpdateForm;
 import com.vti.blogapp.service.PostService;
 import lombok.AllArgsConstructor;
@@ -18,8 +19,8 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/api/v1/posts")
-    public Page<PostDto> findAll(Pageable pageable) {
-        return postService.findAll(pageable);
+    public Page<PostDto> findAll(PostFilterForm form, Pageable pageable) {
+        return postService.findAll(form, pageable);
     }
 
     @GetMapping("/api/v1/posts/{id}")
