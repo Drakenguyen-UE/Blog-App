@@ -23,7 +23,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Page<CommentDto> findAll(CommentFilterForm form, Pageable pageable) {
-        var spec = CommentSpecification.buildSpec(form);
+        var spec = CommentSpecification.buildSpec(form); // chuyển hoá thành spec giống bên post
         return commentRepository.findAll(spec, pageable).map(CommentMapper::map);
     }     // Do khi dùng findAll sẽ trả về 1 page là comment entity, nên phải map để trả về commentDto
 

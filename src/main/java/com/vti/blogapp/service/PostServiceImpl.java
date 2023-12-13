@@ -23,7 +23,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<PostDto> findAll(PostFilterForm form, Pageable pageable) { // nâng cấp từ List<> lên Page<> truyền vào Pageable
-        var spec = PostSpecification.buildSpec(form); // đầu vào là filter form ne dùng trung gian là specification để chuyển đổi
+        var spec = PostSpecification.buildSpec(form); // chuyển đổi từ filter form sang specification của post
+        // giải thích: Service đã có filterForm, nhưng mình đang gọi Repository, lại chưa có FilterForm truyền vào findAll, nhưng findAll của Repo nó ko cần FilterForm mà nó lại cần Specification, mình đã viết chuyển hoá từ FilterForm sang Specification ne sẽ dùng phương thức ấy
         return postRepository.findAll(spec, pageable)        // nên tìm hiểu lambda và method referrence
                 .map(PostMapper::map);
     }
