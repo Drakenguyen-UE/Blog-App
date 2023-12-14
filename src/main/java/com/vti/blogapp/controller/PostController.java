@@ -6,6 +6,7 @@ import com.vti.blogapp.form.PostCreateForm;
 import com.vti.blogapp.form.PostFilterForm;
 import com.vti.blogapp.form.PostUpdateForm;
 import com.vti.blogapp.service.PostService;
+import com.vti.blogapp.validation.PostIdExist;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,12 +27,12 @@ public class PostController {
     }
 
     @GetMapping("/api/v1/posts/{id}")
-    public PostDto findById(@PathVariable("id") Long id) { // dùng PathVariable để ko fix cứng giá trị id trên đường dẫn
+    public PostDto findById(@PathVariable("id") @PostIdExist Long id) { // dùng PathVariable để ko fix cứng giá trị id trên đường dẫn
         return postService.findById(id);
     }
 
-    @DeleteMapping("/api/v1/posts/{i}")
-    public void deleteById(@PathVariable("id") Long id) {
+    @DeleteMapping("/api/v1/posts/{id}")
+    public void deleteById(@PathVariable("id") @PostIdExist Long id) { // Yêu cầu Id đó phải tồn tại mới xoá dc
         postService.deleteById(id);
     }
 
@@ -41,7 +42,7 @@ public class PostController {
     }
 
     @PutMapping("/api/v1/posts/{id}")
-    public PostDto update(@RequestBody @Valid PostUpdateForm form, @PathVariable("id") Long id) {
+    public PostDto update(@RequestBody @Valid PostUpdateForm form, @PathVariable("id") @PostIdExist Long id) { // Yêu cầu Id đó phải tồn tại mới update dc
         return postService.update(form, id);
     }
 }
