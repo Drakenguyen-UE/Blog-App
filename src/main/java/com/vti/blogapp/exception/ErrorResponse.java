@@ -8,8 +8,9 @@ import java.util.Map;
 
 @Getter
 @Setter
-public class ErrorResponse {
-    private String timestamp = LocalDateTime.now().toString(); // đ trả về dạng string
+public class ErrorResponse { // Định nghĩa định dạng trả về của lỗi
+    private String timestamp = LocalDateTime.now().toString(); // để trả về dạng string
+                              // Có giá trị bằng giá trị tại thời điểm xảy ra lỗi
     private String message;
     private Map<String, String> errors;
 

@@ -17,18 +17,21 @@ import java.util.HashMap;
 
 @ControllerAdvice // Xử lý ngoại lệ thì cần @ này
 public class ErrorHandler extends ResponseEntityExceptionHandler {
+    // gõ methodAgrument
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException exception,
+            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         var message = "Sorry! Invalid input";
         var errors = new HashMap<String, String>();
-        for (var error : exception.getFieldErrors()) {
-            var key = error.getField();
+        for (var error : exception.getFieldErrors()) { // FieldErrors là ~ lỗi liên quan đến key-value
+            var key = error.getField(); // trường dữ liệu
             var value = error.getDefaultMessage();
             errors.put(key, value);
         }
         var response = new ErrorResponse(message, errors);
         return new ResponseEntity<>(response, headers, status);
-    }
+    } // Đây là phương thức cần ghi đè của lớp cha để xử lý
 
     @ExceptionHandler(value = ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolation(ConstraintViolationException exception) {
