@@ -30,6 +30,11 @@ public class CommentController {
         return commentService.findByPostId(postId, pageable);
     }
 
+    @GetMapping("api/v1/comments/{id}")
+    public CommentDto findById(@PathVariable("id") @CommentIdExist Long id) {
+        return commentService.findById(id);
+    }
+
     @PostMapping("/api/v1/posts/{postId}/comments")
     public CommentDto create(@RequestBody @Valid CommentCreateForm form, @PathVariable("postId") Long postId) {
         return commentService.create(form, postId);
