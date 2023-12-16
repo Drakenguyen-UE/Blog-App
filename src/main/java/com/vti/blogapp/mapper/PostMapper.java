@@ -30,6 +30,6 @@ public class PostMapper {
         dto.setContent(post.getContent());
         dto.setCreatedAt(post.getCreatedAt());
         dto.setUpdatedAt(post.getUpdatedAt());
-        return dto;
+        return dto.withSelfRel(); // Thêm đường dẫn
     }
 }

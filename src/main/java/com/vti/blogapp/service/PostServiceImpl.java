@@ -32,7 +32,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDto findById(Long id) {
         var post = postRepository.findById(id).get();
-        return PostMapper.map(post);
+        return PostMapper.map(post).withSelfRel(); // withSelfRel là thêm cho nó 1 cái đường dẫn
     }
 
     @Override
