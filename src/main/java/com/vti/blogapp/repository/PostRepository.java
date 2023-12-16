@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface PostRepository extends
         JpaRepository<Post, Long>
         , JpaSpecificationExecutor<Post> {
-}       // Interface này cho phép mình tạo ra chức năng filter (lọc dữ liệu)
+    boolean existsByTitle(String title);
+}       // Interface JpaSpecificationExecutor cho phép mình tạo ra chức năng filter (lọc dữ liệu)

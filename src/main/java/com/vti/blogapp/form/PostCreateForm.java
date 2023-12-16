@@ -1,5 +1,6 @@
 package com.vti.blogapp.form;
 
+import com.vti.blogapp.validation.PostTitleNotExist;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import org.hibernate.validator.constraints.Length;
 public class PostCreateForm {
     @NotBlank(message = "{post.title.NotBlank.message}") // bọc trong ngoặc {} để biết đây là key chứ ko phải value
     @Length(max = 50, message = "{post.title.Length.message}")
+    @PostTitleNotExist
     private String title;
 
     @NotBlank // Yêu cầu ko được để trống
