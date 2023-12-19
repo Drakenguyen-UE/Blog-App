@@ -33,7 +33,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, headers, status);
     } // Đây là phương thức cần ghi đè của lớp cha để xử lý
 
-    @ExceptionHandler(value = ConstraintViolationException.class)
+    @ExceptionHandler(value = ConstraintViolationException.class) // truyền vào 1 value có kiểu dữ liệu của exception đó
     public ResponseEntity<Object> handleConstraintViolation(ConstraintViolationException exception) {
         var message = "Sorry! Invalid input";
         var errors = new HashMap<String, String>();

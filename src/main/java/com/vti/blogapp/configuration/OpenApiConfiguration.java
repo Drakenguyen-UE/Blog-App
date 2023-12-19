@@ -7,15 +7,15 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.servers.Server;
 
-@OpenAPIDefinition(
+@OpenAPIDefinition( // chạy sever -> vào link localhost:8080/swagger-ui/index.html
         info = @Info(
                 title = "Blog Application REST APIs",
                 description = "Blog Application REST APIs Documentation",
-                termsOfService = "https://github.com/khoa-omega/blog-app",
+                termsOfService = "https://github.com/Drakenguyen-UE/Blog-App",
                 contact = @Contact(
-                        name = "Nguyễn Văn Khoa",
-                        url = "https://github.com/khoa-omega",
-                        email = "nvkhoa05@gmail.com"
+                        name = "Nguyễn Hoàng Nhân",
+                        url = "https://github.com/Drakenguyen-UE",
+                        email = "nhan652011@gmail.com"
                 ),
                 license = @License(
                         name = "Apache 2.0",
@@ -29,7 +29,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         ),
         externalDocs = @ExternalDocumentation(
                 description = "Blog Application Github",
-                url = "https://github.com/khoa-omega/blog-app"
+                url = "https://github.com/Drakenguyen-UE/Blog-App"
         )
 )
 //        @SecurityScheme(

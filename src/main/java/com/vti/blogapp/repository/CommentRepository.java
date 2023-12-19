@@ -20,9 +20,9 @@ public interface CommentRepository extends JpaRepository<Comment, Long>,
     // Page<Comment> findByPostId(Long postId, Pageable pageable);
 
     // @Query annotation
-    // @Query("FROM Comment WHERE postId = ?1")
-    // @Query("FROM Comment WHERE postId = :postId")
-    // @Query(value = "SELECT * FROM comment WHERE post_id = ?1", nativeQuery = true")
+    // @Query("FROM Comment WHERE postId = ?1") // đang viết HQL nên ko cần SELECT *
+    // @Query("FROM Comment WHERE postId = :postId")// dùng cách này có thể thay đổi vị trí của postId ở dưới, nhưng phải set @Param phía trước
+    // @Query(value = "SELECT * FROM comment WHERE post_id = ?1", nativeQuery = true") // đang viết SQL Native
     @Query(value = "SELECT * FROM comment WHERE post_id = :postId", nativeQuery = true)
     Page<Comment> findByPostId(@Param("postId") Long postId, Pageable pageable);
 

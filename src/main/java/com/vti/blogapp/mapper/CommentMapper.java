@@ -6,7 +6,7 @@ import com.vti.blogapp.form.CommentCreateForm;
 import com.vti.blogapp.form.CommentUpdateForm;
 
 public class CommentMapper {
-    public static Comment map(CommentCreateForm form) {
+    public static Comment map(CommentCreateForm form) { // Hàm này dùng để ánh xạ 1 create sang entity
         var comment = new Comment();
         comment.setName(form.getName());
         comment.setEmail(form.getEmail());
@@ -20,7 +20,7 @@ public class CommentMapper {
         comment.setBody(form.getBody());
     }
 
-    public static CommentDto map(Comment comment) {
+    public static CommentDto map(Comment comment) { // Hàm này dùng để ánh xạ từ entity sang dto
         var dto = new CommentDto();
         dto.setId(comment.getId());
         dto.setName(comment.getName());
