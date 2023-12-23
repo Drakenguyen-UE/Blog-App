@@ -12,7 +12,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Getter
 @Setter
-public class PostDto extends RepresentationModel<PostDto> { // Viết cho thằng nào thì để generic cho thằng đó
+public class PostDto extends RepresentationModel<PostDto> { // Viết cho class nào thì để generic cho class đó
     private Long id;
     private String title;
     private String description;
@@ -20,7 +20,7 @@ public class PostDto extends RepresentationModel<PostDto> { // Viết cho thằn
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public PostDto withSelfRel() {
+    public PostDto withSelfRel() { // phương thức cho phép dto gán nhãn (thêm link)
         var controller = methodOn(PostController.class);
         var dto = controller.findById(id);
         var link = linkTo(dto).withSelfRel();
