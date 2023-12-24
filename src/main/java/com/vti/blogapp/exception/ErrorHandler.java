@@ -10,8 +10,10 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.*;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,7 +27,8 @@ import java.util.HashMap;
 @ControllerAdvice // Xử lý ngoại lệ thì cần @ này
 public class ErrorHandler extends ResponseEntityExceptionHandler // gõ methodAgrument
                         implements MessageSourceAware,
-                                   AuthenticationEntryPoint {
+                                   AuthenticationEntryPoint,
+                                    AccessDeniedHandler {
     private MessageSource messageSource; // messageSource cho phép mình lấy ra giá trị dựa trên 1 key cho trước
 
     @Override
@@ -73,6 +76,16 @@ public class ErrorHandler extends ResponseEntityExceptionHandler // gõ methodAg
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         var message = getMessage("AuthenticationException.message");
+        var error = new ErrorResponse(message);
+        var out = response.getOutputStream();
+        new ObjectMapper().writeValue(out, error);
+    }
+
+    @Override
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+        var message = getMessage("AccessDeniedException.message");
         var error = new ErrorResponse(message);
         var out = response.getOutputStream();
         new ObjectMapper().writeValue(out, error);

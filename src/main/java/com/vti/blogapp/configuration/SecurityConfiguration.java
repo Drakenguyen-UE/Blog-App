@@ -31,7 +31,9 @@ public class SecurityConfiguration {
                 )
                 .oauth2ResourceServer(customizer -> customizer.jwt(Customizer.withDefaults()))
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling(customizer -> customizer.authenticationEntryPoint(errorHandler))
+                .exceptionHandling(customizer -> customizer
+                        .accessDeniedHandler(errorHandler)
+                        .authenticationEntryPoint(errorHandler))
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .with(new JwtLoginConfigurer(), Customizer.withDefaults());
         return http.build();
