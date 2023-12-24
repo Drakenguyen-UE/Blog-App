@@ -22,7 +22,9 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
-                .authorizeHttpRequests(customizer -> customizer
+                .authorizeHttpRequests(customizer -> customizer // phân quyền các request Http
+                        .requestMatchers(HttpMethod.DELETE).hasAuthority("SCOPE_ADMIN")
+                        // 👆 Khi gửi yêu cầu xoá phải có thẩm quyền là ADMIN 👆
                         .requestMatchers(HttpMethod.POST, "/api/v1/users")
                         .permitAll() // nghĩa là ai cũng có quyền tạo tài khoản
                         .anyRequest().authenticated() // Tất cả những phương thức còn lại phải đăng nhập

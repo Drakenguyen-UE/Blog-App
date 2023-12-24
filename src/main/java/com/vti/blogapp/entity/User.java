@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -37,4 +38,14 @@ public class User {
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @ManyToMany(fetch = FetchType.EAGER) // Khi lấy ra User thì lấy luôn vai trò của User đó
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false
+            ),
+            inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id", nullable = false
+            )
+    )
+    private Set<Role> roles; // Set bao gồm danh sách các phần tử có giá trị phân biệt nhau
 }
